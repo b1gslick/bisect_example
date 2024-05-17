@@ -27,12 +27,13 @@ def read_item(item_id: int):
     return store.get(item_id)
 
 
-@app.post("/items/{item_id}")
-def add_item(item_id: int, item: Item):
+@app.post("/items")
+def add_item(item: Item):
+    id = store.__len__()
     if item.is_offer:
         item.price = calculate_new_price(item.price)
-    store[item_id] = item
-    return {"item_name": item.name, "item_id": item_id}
+    store[id] = item
+    return {"item_name": item.name, "item_id": id}
 
 
 @app.put("/items/{item_id}")
