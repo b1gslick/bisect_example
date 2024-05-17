@@ -14,6 +14,7 @@ class Item(BaseModel):
     is_offer: Union[bool, None] = None
 
 
+raw_prices: Dict[int, float] = {}
 store: Dict[int, Item] = {}
 
 
@@ -32,6 +33,7 @@ def add_item(item: Item):
     id = store.__len__() + 1
     if item.is_offer:
         item.price = calculate_new_price(item.price)
+    raw_prices[id] = item.price
     store[id] = item
     return {"item_name": item.name, "item_id": id}
 
@@ -39,7 +41,7 @@ def add_item(item: Item):
 @app.put("/items/{item_id}")
 def update_item(item_id: int, item: Item):
     if item.is_offer:
-        item.price = calculate_new_price(item.price)
+        item.price = calculate_new_price(item.raw_price)
     store[item_id] = item
     return {"item_name": item.name, "item_id": item_id}
 
