@@ -54,6 +54,12 @@ def change_name(item_id: int, new_name: str):
     return {f"Succes change to {new_name}"}
 
 
+@app.patch("/item_id/{item_id}/{offer_value}")
+def switch_offer(item_id: int, offer_value: bool):
+    store[item_id].is_offer = offer_value
+    return {f"is offer changed to {offer_value}"}
+
+
 @app.get("/offer")
 def get_offer():
     return {"offer": OFFER}
