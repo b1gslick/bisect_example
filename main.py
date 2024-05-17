@@ -35,6 +35,12 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 
 
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int):
+    del store[item_id]
+    return {"Succes"}
+
+
 @app.put("/offer/{new_offer}")
 def new_offer(new_offer: float):
     global OFFER
