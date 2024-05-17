@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-OFFER: float = 9.55
+OFFER: float
 
 
 class Item(BaseModel):
@@ -19,7 +19,7 @@ store: Dict[int, Item] = {}
 
 @app.get("/")
 def read_rooot():
-    return {"hello": "World"}
+    return {"Hello to our store center, here you can store your items"}
 
 
 @app.get("/items/{item_id}")
@@ -35,5 +35,12 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 
 
+@app.put("/offer/{new_offer}")
+def new_offer(new_offer: float):
+    global OFFER
+    OFFER = new_offer
+    return {f"Offer changed to {new_offer}"}
+
+
 def calculate_new_price(price: float):
-    return price - price * OFFER
+    return price - price / OFFER
