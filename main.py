@@ -54,6 +54,10 @@ def delete_item(item_id: int):
 def new_offer(new_offer: float):
     global OFFER
     OFFER = new_offer
+    for _, item in store.items():
+        if item.is_offer:
+            item.price = calculate_new_price(item.price)
+
     return {f"Offer changed to {new_offer}"}
 
 
