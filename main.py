@@ -41,7 +41,7 @@ def add_item(item: Item):
 @app.put("/items/{item_id}")
 def update_item(item_id: int, item: Item):
     if item.is_offer:
-        item.price = calculate_new_price(item.raw_price)
+        item.price = calculate_new_price(item.price)
     store[item_id] = item
     return {"item_name": item.name, "item_id": item_id}
 
@@ -56,9 +56,9 @@ def delete_item(item_id: int):
 def new_offer(new_offer: float):
     global OFFER
     OFFER = new_offer
-    for _, item in store.items():
+    for id, item in store.items():
         if item.is_offer:
-            item.price = calculate_new_price(item.price)
+            item.price = calculate_new_price(raw_prices[id])
 
     return {f"Offer changed to {new_offer}"}
 
