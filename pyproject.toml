@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "bisect-example"
+version = "0.1.0"
+description = ""
+authors = ["b1gslick <bigslick1106@gmai.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+uvicorn = "^0.29.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
