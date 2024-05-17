@@ -42,5 +42,16 @@ def new_offer(new_offer: float):
     return {f"Offer changed to {new_offer}"}
 
 
+@app.patch("/items/{item_id}/{new_name}")
+def change_name(item_id: int, new_name: str):
+    store[item_id].name = new_name
+    return {f"Succes change to {new_name}"}
+
+
+@app.get("/offer")
+def get_offer():
+    return {"offer": OFFER}
+
+
 def calculate_new_price(price: float):
     return price - price / OFFER
