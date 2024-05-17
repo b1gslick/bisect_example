@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-OFFER: float
+OFFER: float = 0.5
 
 
 class Item(BaseModel):
