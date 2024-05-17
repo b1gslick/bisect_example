@@ -29,7 +29,7 @@ def read_item(item_id: int):
 
 @app.post("/items")
 def add_item(item: Item):
-    id = store.__len__()
+    id = store.__len__() + 1
     if item.is_offer:
         item.price = calculate_new_price(item.price)
     store[id] = item
