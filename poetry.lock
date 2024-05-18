@@ -561,6 +561,17 @@ files = [
 windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
+name = "pylog"
+version = "1.1"
+description = "Python implementation of Prolog features."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pylog-1.1-py3-none-any.whl", hash = "sha256:e04ebdad682d48746f2c20a25896b8919feb6481c5507a1c0afb346565b5d7b3"},
+    {file = "pylog-1.1.tar.gz", hash = "sha256:a053aa2e8d885691dd3585a3e3192b24a03af6298f557ba4907213f27a1ef415"},
+]
+
+[[package]]
 name = "python-dotenv"
 version = "1.0.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -1060,4 +1071,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "f96aed13dc60f154d3d76bee1a685410701750384a46881069a0296e6f18b1ab"
+content-hash = "7f54e5497c5bd68160091d62d488a6edbdd2a8eb5620415d0004275857788416"
