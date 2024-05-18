@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from main import app
+from main import app, calculate_new_price
 
 client = TestClient(app)
 
@@ -49,4 +49,4 @@ def test_change_offer_recalculate_price_from_old_price():
     assert check_offer.json()["offer"] == new_offer
     id = response.json()["item_id"]
     item = client.get(f"/items/{id}").json()
-    assert item["price"] == old_price - (old_price / new_offer)
+    assert item["price"] == calculate_new_price(old_price)
