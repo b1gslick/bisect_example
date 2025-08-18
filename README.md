@@ -11,7 +11,7 @@ poetry install
 ```
 
 ```sh
-fastapi dev main.py
+fastapi dev app/main.py
 ```
 
 ## sh example for auto bisect run
