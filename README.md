@@ -49,3 +49,7 @@ exit $status
 
 pytest $path_to_this_repo/bisect_example -k "test_change_offer_recalculate_price_from_old_price"
 ```
+
+```bash
+poetry export -f requirements.txt --output requirements.txt
+```

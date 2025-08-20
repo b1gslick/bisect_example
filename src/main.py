@@ -1,4 +1,6 @@
+import asyncio
 import time
+from prometheus_client.utils import INF
 import psutil
 import random
 
@@ -12,12 +14,30 @@ from prometheus_client import Counter, Histogram, Gauge, generate_latest
 app = FastAPI()
 
 # Metrics definitions
-REQUEST_COUNT = Counter("http_requests_total", "Total HTTP requests", ["endpoint"])
+REQUEST_COUNT = Counter(
+    "http_requests_total", "Total HTTP requests", ["method", "endpoint", "status_code"]
+)
 REQUEST_DURATION = Histogram(
     "request_duration_seconds",
     "Request duration in seconds",
     [
         "path",
+    ],
+    buckets=[
+        0.005,
+        0.01,
+        0.025,
+        0.05,
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.8,
+        0.9,
+        1.0,
+        1.5,
+        2.5,
+        INF,
     ],
 )
 CPU_USAGE = Gauge("cpu_usage_percent", "CPU usage percent")
@@ -107,8 +127,8 @@ async def switch_offer(item_id: int, offer_value: bool):
 
 @app.get("/offer")
 async def get_offer():
-    delay = random.uniform(0, 2)
-    time.sleep(delay)
+    delay = random.uniform(0, 1)
+    await asyncio.sleep(delay)
     return {"offer": OFFER}
 
 
