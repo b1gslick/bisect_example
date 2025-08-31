@@ -63,7 +63,7 @@ async def metrics_middleware(request: Request, call_next: Any):
     duration = time.time() - start_time
     REQUEST_COUNT.labels(
         request.method, request.url.path, str(response.status_code)
-    ).inc
+    ).inc()
     REQUEST_DURATION.labels(path=request.url.path).observe(duration)
     return response
 
